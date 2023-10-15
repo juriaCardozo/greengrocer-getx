@@ -1,16 +1,40 @@
-# greengrocer
+# 📱 Curso de Criação de App de Quitanda Virtual com Flutter + GetX 🚀
 
-A new Flutter project.
+Projeto Flutter do curso "Crie um App de Quitanda Virtual com Flutter + GetX" da Udemy! 💪
 
-## Getting Started
+## O que vai ser desenvolvido? 🧠
 
-This project is a starting point for a Flutter application.
+### 🎨 Desenvolvimento da Interface (Flutter UI)
+### 🌟 Animações e Recursos Especiais
 
-A few resources to get you started if this is your first Flutter project:
+## Funcionalidades do App 📦
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Além disso, vamos desenvolver todas as funcionalidades do App de Quitanda Virtual, explorando:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🔐 Autenticação
+- Login e cadastro de usuários.
+- Recuperação de senha.
+- Autenticação por token.
+
+### 🏡 Home
+- Listagem de produtos.
+- Ordenação por categoria.
+- Filtro de produtos por nome.
+- Rolagem dinâmica de produtos.
+
+### 🛒 Carrinho
+- Adição, atualização e remoção de produtos.
+- Carrinho persistente (não perde dados ao sair do app).
+- Realização de checkout.
+
+### 📦 Pedido
+- Listagem de pedidos.
+- Pagamento via QR code Pix.
+- Pagamento por cópia e cola do Pix.
+
+### 👤 Perfil
+- Visualização de dados do usuário.
+- Atualização de senha.
+- Logout.
+
+Buscando evoluir muito com esse projeto! 😃👨‍💻👩‍💻

@@ -26,7 +26,7 @@ class _HomeTabState extends State<HomeTab> {
         centerTitle: true,
         title: Text.rich(
           TextSpan(
-            style: TextStyle(fontSize: 30),
+            style: const TextStyle(fontSize: 30),
             children: [
               TextSpan(
                 text: 'Green',
@@ -46,7 +46,7 @@ class _HomeTabState extends State<HomeTab> {
               onTap: () {},
               child: Badge(
                 backgroundColor: CustomColors.customContrastColor,
-                label: Text(
+                label: const Text(
                   '2',
                   style: TextStyle(
                     color: Colors.white,
@@ -88,7 +88,7 @@ class _HomeTabState extends State<HomeTab> {
                 fillColor: Colors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(60),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,
                   ),
@@ -99,7 +99,7 @@ class _HomeTabState extends State<HomeTab> {
 
           // Categorias
           Container(
-            padding: EdgeInsets.only(left: 25),
+            padding: const EdgeInsets.only(left: 25),
             height: 40,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
@@ -115,7 +115,7 @@ class _HomeTabState extends State<HomeTab> {
                 );
               },
               separatorBuilder: (_, index) {
-                return SizedBox(
+                return const SizedBox(
                   width: 10,
                 );
               },
@@ -125,8 +125,8 @@ class _HomeTabState extends State<HomeTab> {
           // Grid
           Expanded(
             child: GridView.builder(
-              padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
-              physics: BouncingScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              physics: const BouncingScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 10,
@@ -134,7 +134,9 @@ class _HomeTabState extends State<HomeTab> {
                 childAspectRatio: 9 / 11.5,
               ),
               itemBuilder: (_, index) {
-                return ItemTile();
+                return ItemTile(
+                  item: app_data.items[index],
+                );
               },
               itemCount: app_data.items.length,
             ),

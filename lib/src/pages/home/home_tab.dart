@@ -122,6 +122,24 @@ class _HomeTabState extends State<HomeTab> {
             ),
           ),
           // Grid
+          Expanded(
+            child: GridView.builder(
+              padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+              physics: BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 9 / 11.5,
+              ),
+              itemBuilder: (_, index) {
+                return Container(
+                  color: Colors.red,
+                );
+              },
+              itemCount: app_data.items.length,
+            ),
+          ),
         ],
       ),
     );

@@ -46,7 +46,7 @@ class _BaseScreenState extends State<BaseScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_mini_outlined,
+              Icons.home,
             ),
             label: 'Home',
           ),

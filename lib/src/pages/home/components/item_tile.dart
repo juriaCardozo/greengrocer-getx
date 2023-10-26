@@ -39,7 +39,10 @@ class ItemTile extends StatelessWidget {
                 children: [
                   // Imagem
                   Expanded(
-                    child: Image.asset(item.imageURL),
+                    child: Hero(
+                      tag: item.imageURL,
+                      child: Image.asset(item.imageURL),
+                    ),
                   ),
 
                   // Nome

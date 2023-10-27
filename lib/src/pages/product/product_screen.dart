@@ -7,7 +7,7 @@ import 'package:greengrocer/src/services/utils_services.dart';
 class ProductScreen extends StatefulWidget {
   final ItemModel item;
 
-  ProductScreen({super.key, required this.item});
+  const ProductScreen({super.key, required this.item});
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -35,16 +35,16 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(32),
+                  padding: const EdgeInsets.all(32),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.vertical(
+                    borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(50),
                     ),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.shade600,
-                        offset: Offset(0, 2),
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
@@ -59,7 +59,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               widget.item.itemName,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 27,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -94,7 +94,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           child: SingleChildScrollView(
                             child: Text(
                               widget.item.description,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 height: 1.5,
                               ),
                             ),
@@ -107,8 +107,8 @@ class _ProductScreenState extends State<ProductScreen> {
                         height: 55,
                         child: ElevatedButton.icon(
                           onPressed: () {},
-                          icon: Icon(Icons.shopping_cart_outlined),
-                          label: Text(
+                          icon: const Icon(Icons.shopping_cart_outlined),
+                          label: const Text(
                             'Adicionar ao carrinho',
                             style: TextStyle(
                               fontSize: 18,
@@ -137,7 +137,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios,
                 ),
               ),

@@ -4,30 +4,38 @@ import 'package:greengrocer/src/models/cart_item_model.dart';
 import 'package:greengrocer/src/pages/common_widgets/quantity_widget.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 
-class CartTile extends StatelessWidget {
+class CartTile extends StatefulWidget {
   final CartItemModel cartItem;
-  final UtilsServices utilServices = UtilsServices();
+  final Function(CartItemModel) remove;
 
-  CartTile({super.key, required this.cartItem});
+  CartTile({super.key, required this.cartItem, required this.remove});
+
+  @override
+  State<CartTile> createState() => _CartTileState();
+}
+
+class _CartTileState extends State<CartTile> {
+  final UtilsServices utilServices = UtilsServices();
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(6),
-      ),
       child: ListTile(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        tileColor: Colors.white,
         // Imagem
         leading: Image.asset(
-          cartItem.item.imageURL,
+          widget.cartItem.item.imageURL,
           height: 60,
           width: 60,
         ),
 
         // Título
         title: Text(
-          cartItem.item.itemName,
+          widget.cartItem.item.itemName,
           style: TextStyle(
             fontWeight: FontWeight.w500,
           ),
@@ -35,7 +43,7 @@ class CartTile extends StatelessWidget {
 
         // Total
         subtitle: Text(
-          utilServices.priceToCurrency(cartItem.totalPrice()),
+          utilServices.priceToCurrency(widget.cartItem.totalPrice()),
           style: TextStyle(
             color: CustomColors.customSwatchColor,
             fontWeight: FontWeight.bold,
@@ -44,9 +52,18 @@ class CartTile extends StatelessWidget {
 
         // Quantidade
         trailing: QuantityWidget(
-          value: cartItem.quantity,
-          suffixText: cartItem.item.unit,
-          result: (quantity) {},
+          value: widget.cartItem.quantity,
+          suffixText: widget.cartItem.item.unit,
+          result: (quantity) {
+            setState(() {
+              widget.cartItem.quantity = quantity;
+              if (quantity == 0) {
+                // Remover item do carrinho
+                widget.remove(widget.cartItem);
+              }
+            });
+          },
+          isRemovable: true,
         ),
       ),
     );

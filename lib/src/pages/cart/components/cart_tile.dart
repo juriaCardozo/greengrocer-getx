@@ -8,7 +8,7 @@ class CartTile extends StatefulWidget {
   final CartItemModel cartItem;
   final Function(CartItemModel) remove;
 
-  CartTile({super.key, required this.cartItem, required this.remove});
+  const CartTile({super.key, required this.cartItem, required this.remove});
 
   @override
   State<CartTile> createState() => _CartTileState();
@@ -20,7 +20,7 @@ class _CartTileState extends State<CartTile> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
       child: ListTile(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -36,7 +36,7 @@ class _CartTileState extends State<CartTile> {
         // Título
         title: Text(
           widget.cartItem.item.itemName,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.w500,
           ),
         ),

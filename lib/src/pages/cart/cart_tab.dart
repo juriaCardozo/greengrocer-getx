@@ -6,7 +6,7 @@ import 'package:greengrocer/src/services/utils_services.dart';
 import 'package:greengrocer/src/config/app_data.dart' as app_data;
 
 class CartTab extends StatefulWidget {
-  CartTab({super.key});
+  const CartTab({super.key});
 
   @override
   State<CartTab> createState() => _CartTabState();
@@ -35,7 +35,7 @@ class _CartTabState extends State<CartTab> {
     return Scaffold(
       // AppBar
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Carrinho',
         ),
       ),
@@ -56,10 +56,10 @@ class _CartTabState extends State<CartTab> {
 
           // Container Total
           Container(
-            padding: EdgeInsetsDirectional.all(16),
+            padding: const EdgeInsetsDirectional.all(16),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.vertical(
+              borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(30),
               ),
               boxShadow: [
@@ -76,7 +76,7 @@ class _CartTabState extends State<CartTab> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // Texto Total Geral
-                Text(
+                const Text(
                   'Total Geral',
                   style: TextStyle(fontSize: 12),
                 ),
@@ -103,9 +103,8 @@ class _CartTabState extends State<CartTab> {
                     ),
                     onPressed: () async {
                       bool? result = await showOrderConfirmation();
-                      print(result);
                     },
-                    child: Text(
+                    child: const Text(
                       'Concluir Pedido',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
@@ -127,15 +126,15 @@ class _CartTabState extends State<CartTab> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          title: Text('Confirmação'),
-          content: Text('Deseja realmente concluir seu pedido?'),
+          title: const Text('Confirmação'),
+          content: const Text('Deseja realmente concluir seu pedido?'),
           actions: [
             // Botão de Não
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
-              child: Text('Não'),
+              child: const Text('Não'),
             ),
 
             // Botão de Sim
@@ -143,15 +142,15 @@ class _CartTabState extends State<CartTab> {
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
-              child: Text(
-                'Sim',
-                style: TextStyle(color: Colors.white),
-              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: CustomColors.customSwatchColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
+              ),
+              child: const Text(
+                'Sim',
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ],

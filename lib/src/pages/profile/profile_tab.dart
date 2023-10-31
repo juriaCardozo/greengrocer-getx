@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:greengrocer/src/pages/common_widgets/custom_text_field.dart';
 import 'package:greengrocer/src/config/app_data.dart' as app_data;
 
-class ProfileTab extends StatelessWidget {
+class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
 
+  @override
+  State<ProfileTab> createState() => _ProfileTabState();
+}
+
+class _ProfileTabState extends State<ProfileTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,12 +74,103 @@ class ProfileTab extends StatelessWidget {
                   color: Colors.green,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                updatePassword();
+              },
               child: const Text('Atualizar senha'),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  // Função
+  Future<bool?> updatePassword() {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        // Caixa de diálogo
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Título
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        'Atualização de Senha',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    // Campo Senha Atual
+                    CustomTextField(
+                      icon: Icons.lock,
+                      label: 'Senha Atual',
+                      isSecret: true,
+                    ),
+
+                    // Campo Nova Senha
+                    CustomTextField(
+                      icon: Icons.lock_outline,
+                      label: 'Nova senha',
+                      isSecret: true,
+                    ),
+
+                    // Campo Confirmação Nova Senha
+                    CustomTextField(
+                      icon: Icons.lock_outline,
+                      label: 'Confirmar nova senha',
+                      isSecret: true,
+                    ),
+
+                    // Botão de Confirmação
+                    SizedBox(
+                      height: 45,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          'Atualizar',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              //Botão de fechar
+              Positioned(
+                top: 5,
+                right: 5,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.close),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

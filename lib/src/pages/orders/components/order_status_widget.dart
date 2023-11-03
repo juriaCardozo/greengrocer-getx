@@ -3,7 +3,7 @@ import 'package:greengrocer/src/config/custom_colors.dart';
 
 class OrderStatusWidget extends StatelessWidget {
   final String status;
-  final bool overdue;
+  final bool isOverdue;
 
   final Map<String, int> allStatus = <String, int>{
     'pending_payment': 0,
@@ -16,7 +16,7 @@ class OrderStatusWidget extends StatelessWidget {
 
   int get currentStatus => allStatus[status]!;
 
-  OrderStatusWidget({super.key, required this.status, required this.overdue});
+  OrderStatusWidget({super.key, required this.status, required this.isOverdue});
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +31,20 @@ class OrderStatusWidget extends StatelessWidget {
             title: 'Pix estornado',
             backgroundColor: Colors.orange,
           ),
-        ] else if (overdue) ...[
+        ] else if (isOverdue) ...[
           _StatusDot(
             isActive: true,
             title: 'Pagamento Pix Vencido',
             backgroundColor: Colors.red,
           )
+        ] else ...[
+          _StatusDot(isActive: currentStatus >= 2, title: 'Pagamento'),
+          _CustomDivider(),
+          _StatusDot(isActive: currentStatus >= 3, title: 'Preparando'),
+          _CustomDivider(),
+          _StatusDot(isActive: currentStatus >= 4, title: 'Envio'),
+          _CustomDivider(),
+          _StatusDot(isActive: currentStatus == 5, title: 'Entregue'),
         ]
       ],
     );

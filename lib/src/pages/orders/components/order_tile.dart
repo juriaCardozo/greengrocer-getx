@@ -19,6 +19,7 @@ class OrderTile extends StatelessWidget {
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
+          initiallyExpanded: order.status == 'pending_payment',
           childrenPadding: EdgeInsets.fromLTRB(16, 0, 16, 16),
           title: Column(
             mainAxisSize: MainAxisSize.min,
@@ -40,20 +41,22 @@ class OrderTile extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           children: [
-            SizedBox(
-              height: 150,
+            IntrinsicHeight(
               child: Row(
                 children: [
                   // Lista de Produtos
                   Expanded(
                     flex: 3,
-                    child: ListView(
-                      children: order.items.map((orderItem) {
-                        return _OrderItemWidget(
-                          utilsServices: utilsServices,
-                          orderItem: orderItem,
-                        );
-                      }).toList(),
+                    child: SizedBox(
+                      height: 150,
+                      child: ListView(
+                        children: order.items.map((orderItem) {
+                          return _OrderItemWidget(
+                            utilsServices: utilsServices,
+                            orderItem: orderItem,
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ),
 
@@ -69,7 +72,7 @@ class OrderTile extends StatelessWidget {
                     flex: 2,
                     child: OrderStatusWidget(
                       status: order.status,
-                      overdue: order.overdueDateTime.isBefore(DateTime.now()),
+                      isOverdue: order.overdueDateTime.isAfter(DateTime.now()),
                     ),
                   ),
                 ],

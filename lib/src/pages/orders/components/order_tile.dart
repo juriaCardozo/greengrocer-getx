@@ -20,7 +20,10 @@ class OrderTile extends StatelessWidget {
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
           initiallyExpanded: order.status == 'pending_payment',
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           childrenPadding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+          expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
           title: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,8 +41,6 @@ class OrderTile extends StatelessWidget {
               ),
             ],
           ),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           children: [
             IntrinsicHeight(
               child: Row(
@@ -78,6 +79,41 @@ class OrderTile extends StatelessWidget {
                 ],
               ),
             ),
+
+            // Total
+            Text.rich(
+              TextSpan(
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+                children: [
+                  TextSpan(
+                    text: 'Total ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: utilsServices.priceToCurrency(order.total),
+                  ),
+                ],
+              ),
+            ),
+
+            // Botão Pagamento
+            Visibility(
+              visible: order.status == 'pending_payment',
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                onPressed: () {},
+                label: Text('Ver QR Code Pix',
+                    style: TextStyle(color: Colors.white)),
+                icon: Image.asset(
+                  'assets/app_images/pix.png',
+                  height: 18,
+                ),
+              ),
+            )
           ],
         ),
       ),

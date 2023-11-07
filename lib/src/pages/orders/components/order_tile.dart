@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:greengrocer/src/config/custom_colors.dart';
 import 'package:greengrocer/src/models/cart_item_model.dart';
 import 'package:greengrocer/src/models/order_model.dart';
-import 'package:greengrocer/src/config/app_data.dart' as app_data;
+import 'package:greengrocer/src/pages/common_widgets/payment_dialog.dart';
 import 'package:greengrocer/src/pages/orders/components/order_status_widget.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 
@@ -22,7 +21,7 @@ class OrderTile extends StatelessWidget {
           initiallyExpanded: order.status == 'pending_payment',
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          childrenPadding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+          childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
           title: Column(
             mainAxisSize: MainAxisSize.min,
@@ -30,11 +29,11 @@ class OrderTile extends StatelessWidget {
             children: [
               Text(
                 'Pedido ${order.id}',
-                style: TextStyle(color: Colors.green),
+                style: const TextStyle(color: Colors.green),
               ),
               Text(
                 utilsServices.formatDateTime(order.createdDateTime),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
                   color: Colors.black,
                 ),
@@ -83,11 +82,11 @@ class OrderTile extends StatelessWidget {
             // Total
             Text.rich(
               TextSpan(
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text: 'Total ',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -105,8 +104,17 @@ class OrderTile extends StatelessWidget {
               visible: order.status == 'pending_payment',
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                onPressed: () {},
-                label: Text('Ver QR Code Pix',
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return PaymentDialog(
+                        order: order,
+                      );
+                    },
+                  );
+                },
+                label: const Text('Ver QR Code Pix',
                     style: TextStyle(color: Colors.white)),
                 icon: Image.asset(
                   'assets/app_images/pix.png',
@@ -139,7 +147,7 @@ class _OrderItemWidget extends StatelessWidget {
         children: [
           Text(
             '${orderItem.quantity} ${orderItem.item.unit} ',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           Expanded(
             child: Text(
